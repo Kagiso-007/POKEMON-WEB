@@ -1,0 +1,14 @@
+.mat-card {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.258);
+}
+
+.mat-card-avatar {
+    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg');
+    background-size: cover;
+    border-radius: 0;
+}
+  
+.mat-card-subtitle, .mat-card-title {
+    margin: 0;
+    font-variant: small-caps;
+}

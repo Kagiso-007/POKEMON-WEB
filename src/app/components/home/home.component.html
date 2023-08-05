@@ -1,0 +1,11 @@
+<mat-toolbar>
+    <h2>List of Pokémons</h2>
+</mat-toolbar>
+<mat-card class="card" *ngFor="let pokemon of pokemons">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>{{pokemon.name}}</mat-card-title>
+      <!-- todo: replace name param by ID -->
+      <mat-card-subtitle><a [routerLink]="['../pokemon-details', pokemon.name]">pokemon details</a></mat-card-subtitle>
+    </mat-card-header>
+</mat-card>
