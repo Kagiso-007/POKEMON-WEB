@@ -1,11 +1,43 @@
-<mat-toolbar>
-    <h2>List of Pokémons</h2>
-</mat-toolbar>
-<mat-card class="card" *ngFor="let pokemon of pokemons">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title>{{pokemon.name}}</mat-card-title>
-      <!-- todo: replace name param by ID -->
-      <mat-card-subtitle><a [routerLink]="['../pokemon-details', pokemon.name]">pokemon details</a></mat-card-subtitle>
-    </mat-card-header>
-</mat-card>
+<section class="table-container" tabindex="0">
+    <div class="search-container">
+        <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Search for a pokemon by name" #input>
+            <button matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon color="primary">search</mat-icon>
+            </button>
+        </mat-form-field>
+        <h3>Pokemon List</h3>
+    </div>
+    <table mat-table [dataSource]="pokemons">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> id </th>
+            <td mat-cell *matCellDef="let pokemon"> 1. </td>
+        </ng-container>
+
+        <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef> image </th>
+            <td mat-cell *matCellDef="let pokemon">
+                <img class="pokemon-avatar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"/>
+            </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> name </th>
+            <td mat-cell *matCellDef="let pokemon"> {{ pokemon.name }} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="url">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let pokemon">
+                <a [routerLink]="['../pokemon-details', pokemon.name]">view</a>
+            </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!-- <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons
+        aria-label="Select page of Pokemons">
+    </mat-paginator> -->
+</section>

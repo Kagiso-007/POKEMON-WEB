@@ -1,14 +1,54 @@
-.mat-card {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.258);
+.table-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.853);
 }
 
-.mat-card-avatar {
-    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg');
-    background-size: cover;
-    border-radius: 0;
-}
-  
-.mat-card-subtitle, .mat-card-title {
-    margin: 0;
+table, .search-container {
+    margin: auto;
+    width: 100%;
+    min-width: 390px;
+    max-width: 900px;
     font-variant: small-caps;
 }
+
+.search-container {
+    position: -webkit-sticky; /* Safari */
+    background-color: rgb(252, 252, 252);
+    position: sticky;
+    z-index: 999;
+    top: 0;
+    padding: 10px 0;
+    font-variant: normal;
+    text-align: center;
+    mat-form-field {
+        width: 80%;
+        mat-icon {
+            font-size: 25px;
+        }
+    }
+}
+
+.mat-column-image {
+    height: 8vh;
+}
+
+.mat-column-id, .mat-column-image, .mat-column-name {
+    font-size: 16px;
+}
+
+.pokemon-avatar {
+    width: 10vw;
+    max-width: 60px;
+    min-width: 50px;
+}
+
+// .mat-header-row {
+//     top: 87.5px;
+//     position: sticky;
+//     border-top: 1px solid grey;
+// }

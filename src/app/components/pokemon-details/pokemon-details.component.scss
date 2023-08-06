@@ -1,0 +1,27 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.853);
+}
+
+.header-image {
+    background-image: url('../../../assets/icons/pokemon-icon.png');
+    background-size: cover;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+}
+
+.mat-card-header {
+    font-variant: small-caps;
+}
+
+.mat-card-image {
+    max-width: 500px;
+    text-align: center;
+}
