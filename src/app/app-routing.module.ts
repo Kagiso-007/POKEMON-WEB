@@ -12,6 +12,10 @@ const routes: Routes = [
     {
         path: 'pokemon-details/:name',
         component: PokemonDetailsComponent
+    },
+    { 
+        path: '**', 
+        redirectTo: ''
     }
 ];
 
