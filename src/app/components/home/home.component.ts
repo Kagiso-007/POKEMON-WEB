@@ -62,9 +62,12 @@ export class HomeComponent implements OnInit {
   }
 
   clearSearch() {
+    this.helperService.showProgressSpinner();
+
     this.searchValue = '';
     this.pokemonService.getListOfPokemons(this.limit, this.offset).subscribe((_pokemons) => {
       this.pokemons = _pokemons;
+      this.helperService.closeProgressSpinner();
     });
   }
 }
