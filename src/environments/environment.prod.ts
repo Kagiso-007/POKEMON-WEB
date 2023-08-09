@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  pokemonBaseURL: 'https://pokeapi.co/api/v2/'
+  pokemonBaseURL: 'https://pokemon-microservice-s5dxydvkvq-el.a.run.app'
 }

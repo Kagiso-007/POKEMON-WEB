@@ -1,14 +1,64 @@
-.mat-card {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.258);
+.component-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.mat-card-avatar {
-    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg');
-    background-size: cover;
-    border-radius: 0;
+.table-container {
+    width: 100%;
+    height: 100%;
+    max-height: 660px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: auto;
 }
-  
-.mat-card-subtitle, .mat-card-title {
-    margin: 0;
+
+table, .search-container, mat-paginator {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 320px;
+    max-width: 900px;
     font-variant: small-caps;
+}
+
+.search-container {
+    position: -webkit-sticky; /* Safari */
+    background-color: rgb(252, 252, 252);
+    position: sticky;
+    z-index: 999;
+    top: 0px;
+    padding: 10px 0;
+    font-variant: normal;
+    text-align: center;
+    mat-form-field {
+        width: 80%;
+        mat-icon {
+            font-size: 25px;
+        }
+    }
+}
+
+.mat-column-image {
+    height: 8vh;
+}
+
+.mat-column-id, .mat-column-image, .mat-column-name {
+    font-size: 16px;
+}
+
+.pokemon-avatar {
+    width: 10vw;
+    max-width: 60px;
+    min-width: 50px;
+}
+
+.mat-header-row {
+    top: 146.94px;
+    position: sticky;
+}
+
+mat-paginator {
+    bottom: 0;
+    position: sticky;
 }

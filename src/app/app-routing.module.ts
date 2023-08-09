@@ -4,9 +4,10 @@ import { HomeComponent } from "./components/home/home.component";
 import { PokemonDetailsComponent } from "./components/pokemon-details/pokemon-details.component";
 
 const routes: Routes = [
-    { 
-        path: 'pokemons',
-        component: HomeComponent
+    {
+        path: '',
+        component: HomeComponent,
+        pathMatch: 'full'
     },
     {
         path: 'pokemon-details/:name',

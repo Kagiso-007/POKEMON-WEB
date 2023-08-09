@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PokemonListResponseDTO } from 'src/app/dtos/response/pokemon-list.dto';
-import { Pokemon } from 'src/app/models/pokemon/pokemon.model';
+import { PokemonDTO } from 'src/app/dtos/response/pokemon.dto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,11 +11,11 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getListOfPokemons(limit: number): Observable<PokemonListResponseDTO> {
-    return this.http.get<PokemonListResponseDTO>(`${environment.pokemonBaseURL}/pokemon?limit=${limit}`);
+  getPokemonByName(name: string): Observable<PokemonDTO> {
+    return this.http.get<PokemonDTO>(`${environment.pokemonBaseURL}/${name}`);
   }
 
-  getPokemonByName(name: string): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${environment.pokemonBaseURL}/pokemon/${name}`);
+  getListOfPokemons(limit: number, offset: number): Observable<PokemonDTO[]> {
+    return this.http.get<PokemonDTO[]>(`${environment.pokemonBaseURL}?limit=${limit}&offset=${offset}`);
   }
 }
