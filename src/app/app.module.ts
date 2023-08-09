@@ -9,12 +9,14 @@ import { MaterialModule } from 'material-module';
 import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnerDialogComponent } from './components/spinner-dialog/spinner-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PokemonDetailsComponent
+    PokemonDetailsComponent,
+    SpinnerDialogComponent
   ],
   imports: [
     BrowserModule,
