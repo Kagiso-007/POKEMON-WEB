@@ -2,17 +2,17 @@
     <mat-card class="card">
         <mat-card-header>
           <div mat-card-avatar class="header-image"></div>
-          <mat-card-title>{{pokemon.name}}</mat-card-title>
+          <mat-card-title>{{pokemon?.name}}</mat-card-title>
           <mat-card-subtitle>
             type:
-            <span *ngFor="let type of pokemon.types"> {{type}} |</span>
+            <span *ngFor="let type of pokemon?.types"> {{type}} |</span>
           </mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image src="{{pokemon.imageUrl}}" alt="picture of pokemon">
+        <img mat-card-image src="{{pokemon?.imageUrl}}" alt="picture of pokemon">
         <mat-card-content>    
             <table>
-                <tr *ngFor="let stat of pokemon.stats">
+                <tr *ngFor="let stat of pokemon?.stats">
                     <td>{{stat.name | uppercase}}</td>
                     <td>{{stat.baseStat}}</td>
                 </tr>
