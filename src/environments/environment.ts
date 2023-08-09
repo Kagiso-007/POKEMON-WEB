@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  pokemonBaseURL: 'https://pokeapi.co/api/v2'
+  pokemonBaseURL: 'http://localhost:8080/api/pokemons'
 };
 
 /*

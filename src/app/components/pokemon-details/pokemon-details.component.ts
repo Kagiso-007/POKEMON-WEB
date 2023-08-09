@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PokemonDTO } from 'src/app/dtos/response/pokemon.dto';
 import { RouteName } from 'src/app/enums/route-name';
-import { Pokemon } from 'src/app/models/pokemon/pokemon.model';
 import { PokemonService } from 'src/app/services/pokemon/pokemon.service';
 
 @Component({
@@ -11,18 +11,17 @@ import { PokemonService } from 'src/app/services/pokemon/pokemon.service';
 })
 export class PokemonDetailsComponent implements OnInit {
 
-  public pokemon!: Pokemon;
+  public pokemon!: PokemonDTO;
 
   constructor(private pokemonService: PokemonService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((parameters) => {
       const pokemonName = parameters.get('name');
-      console.log(parameters);
       if(pokemonName) {
-        this.pokemonService.getPokemonByName(pokemonName).subscribe((_pokemon) => {
-          this.pokemon = _pokemon;
-          console.log(_pokemon.sprites);
+        this.pokemonService.getPokemonByName(pokemonName).subscribe((pokemonDTO) => {
+          console.log(pokemonDTO);
+          this.pokemon = pokemonDTO;
         }, (error) => {
           console.error(error);
         });

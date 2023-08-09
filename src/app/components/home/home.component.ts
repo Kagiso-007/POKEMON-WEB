@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PokemonResult } from 'src/app/dtos/response/pokemon-list.dto';
 import { PokemonService } from 'src/app/services/pokemon/pokemon.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { Pokemon } from 'src/app/models/pokemon/pokemon.model';
-import { MatTableDataSource } from '@angular/material/table';
+import { merge } from 'rxjs';
+import { map, startWith, switchMap } from 'rxjs/operators';
+import { PokemonDTO } from 'src/app/dtos/response/pokemon.dto';
 
 @Component({
   selector: 'app-home',
@@ -14,22 +14,48 @@ export class HomeComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   
-  public pokemons!: MatTableDataSource<PokemonResult>;
+  public pokemons: PokemonDTO[] = [];
   public displayedColumns: string[] = ['id', 'image', 'name', 'url'];
+  public isLoading = false;
+  public searchValue!: string;
+
+  public offset!: number;
+  public limit!: number;
 
   constructor(private pokemonService: PokemonService) { }
 
-  ngOnInit() {
-    this.pokemonService.getListOfPokemons(15).subscribe((responseDTO) => {
-      this.pokemons = new MatTableDataSource<PokemonResult>(responseDTO.results);
-    }, (error) => {
-      console.error(error.message);
-    });
-  }
+  ngOnInit() { }
 
   ngAfterViewInit() {
-    //to do: remove condition and add a loader
-    if(this.pokemons)
-      this.pokemons.paginator = this.paginator;
+    merge(this.paginator?.page).pipe(startWith({}), switchMap((pageEvent: any) => {
+      this.offset = (pageEvent.pageSize * pageEvent.pageIndex) || 0;
+      this.limit = pageEvent.pageSize || this.paginator.pageSize;
+      return this.pokemonService.getListOfPokemons(this.limit, this.offset);
+    }), map(data => {
+      return data;
+    })).subscribe((data) => this.pokemons = data);
+  }
+
+  searchPokemonByName() {
+    if(this.searchValue) {
+      this.pokemonService.getPokemonByName(this.searchValue.toLowerCase()).subscribe((value) => {
+        this.pokemons = [value];
+      }, (error) => {
+        if(error.status == 404) {
+          this.pokemons = [];
+        }
+      });
+    }
+  }
+
+  searchFieldIsActive() {
+    return this.searchValue?.length > 0;
+  }
+
+  clearSearch() {
+    this.searchValue = '';
+    this.pokemonService.getListOfPokemons(this.limit, this.offset).subscribe((_pokemons) => {
+      this.pokemons = _pokemons;
+    });
   }
 }

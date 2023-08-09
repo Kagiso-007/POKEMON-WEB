@@ -3,16 +3,33 @@
         <mat-card-header>
           <div mat-card-avatar class="header-image"></div>
           <mat-card-title>{{pokemon.name}}</mat-card-title>
-          <mat-card-subtitle>height: {{pokemon.height}}, weight: {{pokemon.weight}}</mat-card-subtitle>
+          <mat-card-subtitle>
+            <span *ngFor="let type of pokemon.types"> {{type}} |</span>
+          </mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{pokemon.sprites.other.dream_world.front_default}}" alt="Photo of Pokemon">
-        <mat-card-content>
-            <!-- to do: add content -->
-            <p>Type: Electric</p>
-            <p>Pokemon Stats: </p>
-          </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>Back to List</button>
-        </mat-card-actions>
+
+        <img mat-card-image src="{{pokemon.imageUrl}}" alt="picture of pokemon">
+        <mat-card-content>    
+            <table>
+                <tr *ngFor="let stat of pokemon.stats">
+                    <td>{{stat.name | uppercase}}</td>
+                    <td>{{stat.baseStat}}</td>
+                </tr>
+            </table>
+            <table *ngIf="pokemon">
+                <tr>
+                    <td>BASE EXPERIENCE</td>
+                    <td>{{pokemon.baseExperience}}</td>
+                </tr>
+                <tr>
+                    <td>HEIGHT</td>
+                    <td>{{pokemon.height}}</td>
+                </tr>
+                <tr>
+                    <td>WEIGHT</td>
+                    <td>{{pokemon.weight}}</td>
+                </tr>
+            </table>
+        </mat-card-content>
     </mat-card>
 </section>
